@@ -1,0 +1,2 @@
+INSERT INTO Customers(first_name_user, second_name_user, money, phone_number, mail, city, street, apartment, age)
+VALUES ("Illia", "Ponomarov", 567.89, "+38077777777", "xponomarov@stuba.sk", "Dnipro", "Schebchenko 56/8", 89, 19)
