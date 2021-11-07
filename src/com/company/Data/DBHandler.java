@@ -1,5 +1,6 @@
 package com.company.Data;
 import com.company.People.Customers;
+import com.company.People.Manager;
 import com.company.People.Person;
 
 import java.util.ArrayList;
@@ -75,11 +76,15 @@ public class DBHandler {
 
     public Person getManager() throws SQLException{
         Person manager;
+        String first_n = "", second_n = "";
 
         ResultSet resultSet = statement.executeQuery("SELECT * FROM Manager");
         while (resultSet.next()){
-
+           first_n =  resultSet.getString(2);
+           second_n = resultSet.getString(3);
         }
+
+        manager = new Manager(first_n, second_n);
 
 
         return manager;
