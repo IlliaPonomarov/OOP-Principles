@@ -1,6 +1,6 @@
 package com.company.People;
 
-public abstract class Person {
+public abstract class Person implements InteractionCustomersManager{
 
     private String first_name;
     private String second_name;
@@ -37,7 +37,7 @@ public abstract class Person {
     }
 
 
-    abstract void greetings(Person person, Person person1);
+    public abstract void greetings(Person person, Person person1) throws InterruptedException;
 
     @Override
     public String toString() {

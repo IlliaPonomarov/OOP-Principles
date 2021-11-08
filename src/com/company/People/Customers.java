@@ -31,9 +31,10 @@ public class Customers extends Person implements ConsoleColors {
 
 
     @Override
-    void greetings(Person person, Person person1) {
+    public  void greetings(Person person, Person person1) throws InterruptedException{
 
         System.out.println(CYAN_BOLD_BRIGHT + getFirst_name() + " " + getSecond_name() + " (Customers) greets the manager." + TEXT_RESET);
+        Thread.sleep(1000);
     }
 
     @Override
@@ -48,5 +49,13 @@ public class Customers extends Person implements ConsoleColors {
                 "\nCity: " + city +
                 "\nStreet: " + street +
                 "\nApartment: " + apartment;
+    }
+
+
+
+    @Override
+    public int chooseOfProduct(int i) throws InterruptedException {
+        System.out.println(GREEN_BOLD_BRIGHT + getFirst_name() + " " + getSecond_name() + " (Customer) chose: " + TEXT_RESET + WHITE_BOLD_BRIGHT + i + TEXT_RESET);
+        return i;
     }
 }

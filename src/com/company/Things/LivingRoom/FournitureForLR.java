@@ -2,5 +2,5 @@ package com.company.Things.LivingRoom;
 
 import com.company.Things.Fourniture;
 
-public class FournitureForLR extends Fourniture {
+public abstract class FournitureForLR extends Fourniture {
 }

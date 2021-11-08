@@ -24,7 +24,13 @@ public class Cashier extends Person{
     }
 
     @Override
-    void greetings(Person person, Person person1) {
+    public void greetings(Person person, Person person1) {
         System.out.println();
+    }
+
+    @Override
+    public int chooseOfProduct(int i) throws InterruptedException {
+
+        return i;
     }
 }
