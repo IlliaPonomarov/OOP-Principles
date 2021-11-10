@@ -2,6 +2,8 @@ package com.company.Data;
 import com.company.People.Customers;
 import com.company.People.Manager;
 import com.company.People.Person;
+import com.company.Things.Lighting.WallLamps;
+
 
 import java.util.ArrayList;
 import java.sql.*;
@@ -19,7 +21,6 @@ public class DBHandler {
 
     private DBHandler() {
         File path_to_database = new File("src\\com\\company\\Data");
-        File path_to_jdbc = new File("lib\\");
         try {
 
             connection = DriverManager.getConnection("jdbc:sqlite:" + path_to_database + "\\database.db");
@@ -28,7 +29,7 @@ public class DBHandler {
 
         }catch(SQLException throwables){
             throwables.printStackTrace();
-            System.out.println("Connection error.");
+            System.err.println("Connection error.");
         }
 
     }
@@ -90,8 +91,45 @@ public class DBHandler {
         return manager;
     }
 
+    public ArrayList<WallLamps> getWallLamps() throws SQLException{
+
+        ArrayList<WallLamps> wallLamps = new ArrayList<WallLamps>();
+
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM WallLamps");
+      //  ResultSet countOf = statement.executeQuery("SELECT  id FROM WallLamps ORDER BY name DESC ");
+        int count = 0, i = 0;
 
 
-}
+
+
+            while (resultSet.next()) {
+//                System.out.println(resultSet.getString(2));
+//                System.out.println(resultSet.getDouble(3));
+//                System.out.println(resultSet.getBoolean(4));
+//                System.out.println(resultSet.getBoolean(5));
+//                System.out.println(resultSet.getString(6));
+//                System.out.println(resultSet.getInt(7));
+//                System.out.println(resultSet.getInt(8));
+//                System.out.println(resultSet.getInt(9));
+                    WallLamps lll = new WallLamps(
+                            resultSet.getString(2),
+                            resultSet.getDouble(3),
+                            resultSet.getBoolean(4),
+                            resultSet.getBoolean(5),
+                            resultSet.getString(6),
+                            resultSet.getInt(7),
+                            resultSet.getInt(8),
+                            resultSet.getInt(9));
+                    wallLamps.add(lll);
+            }
+
+//            System.out.println(wallLamps.get(0).toString());
+//            System.out.println(wallLamps.get(1).toString());
+    return wallLamps;
+
+        }
+
+
+    }
 
 

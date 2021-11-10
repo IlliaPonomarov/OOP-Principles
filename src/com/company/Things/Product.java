@@ -3,13 +3,30 @@ package com.company.Things;
 import com.company.People.Manager;
 
 public abstract class Product extends Manager {
-    private double price;
     private boolean availabilityOfGuarantee;
+    private int avail_in_warehouse;
+    private double price;
 
 
 
     public boolean isAvailabilityOfGuarantee() {
         return availabilityOfGuarantee;
+    }
+
+    public int getAvail_in_warehouse() {
+        return avail_in_warehouse;
+    }
+
+    public void setAvail_in_warehouse(int avail_in_warehouse) {
+        this.avail_in_warehouse = avail_in_warehouse;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public void setAvailabilityOfGuarantee(boolean availabilityOfGuarantee) {

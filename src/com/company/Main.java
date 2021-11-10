@@ -9,6 +9,8 @@ import java.util.*;
 import java.util.Scanner;
 
 public class Main implements ConsoleColors{
+    public static ArrayList<Person> customers;
+    public static ArrayList<Person> manager;
 
     public static void main(String[] args)  {
 	 try
@@ -16,15 +18,17 @@ public class Main implements ConsoleColors{
 
 
          greetingsText();
-         DBHandler dbHandler = DBHandler.getInstance();
+          DBHandler dbHandler = DBHandler.getInstance();
          Scanner in = new Scanner(System.in);
 
 
          //Customers входит в магазин (создается объект)
-         ArrayList<Person> customers = new ArrayList<Person>();
-         ArrayList<Person> manager = new ArrayList<Person>();
+         customers = new ArrayList<Person>();
+         manager = new ArrayList<Person>();
+
          customers.add(dbHandler.getCustomers());
          manager.add(dbHandler.getManager());
+
          System.out.println(CYAN_BOLD_BRIGHT + customers.get(0).getFirst_name() + " " + customers.get(0).getSecond_name() + " (Customers)enter the store IP company ..." + TEXT_RESET);
 
 
@@ -48,7 +52,7 @@ public class Main implements ConsoleColors{
 
     }
 
-    public static void questionsByManager(ArrayList<Person> customers, ArrayList<Person> manager) throws InterruptedException{
+    public static void questionsByManager(ArrayList<Person> customers, ArrayList<Person> manager) throws InterruptedException, SQLException{
         int size_c = customers.size() - 1, size_m = manager.size() - 1;
         manager.get(size_m).chooseOfProduct(0);
         Scanner in = new Scanner(System.in);
