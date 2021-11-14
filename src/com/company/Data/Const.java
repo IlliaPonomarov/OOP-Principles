@@ -2,6 +2,7 @@ package com.company.Data;
 
 public class Const {
     //TABLE - USER
+    protected static final String TABLE_NAME_CUSTOMERS = "Customers";
     protected static final String FIRST_NAME_CUSTOMERS = "first_name_user";
     protected static final String SECOND_NAME_CUSTOMERS = "second_name_user";
     protected static final String MONEY_CUSTOMERS = "money";
@@ -12,10 +13,13 @@ public class Const {
     protected static final String APARTMENT_CUSTOMERS = "apartment";
 
     //TABLE - MANAGER
+    protected static final String TABLE_NAME_MANAGER = "Manager";
 
     //TABLE - CASHIER
+    protected static final String TABLE_NAME_CASHIER = "Cashier";
 
-    //TABLE - FURNITURE
+    //TABLE - FURNITURE_WALL_LAMPS
+    protected static final String TABLE_NAME_WALL_LAMPS = "WallLamps";
 
     //TABLE - TECHNIC
 

@@ -1,4 +1,6 @@
 package com.company.Things;
 
-public abstract class Technic extends Product{
+import com.company.Things.Product;
+
+public abstract class Technic extends Product {
 }

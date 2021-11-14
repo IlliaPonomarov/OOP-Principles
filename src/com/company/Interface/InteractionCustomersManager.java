@@ -1,4 +1,4 @@
-package com.company.People;
+package com.company.Interface;
 
 import java.sql.SQLException;
 

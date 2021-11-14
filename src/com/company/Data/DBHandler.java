@@ -20,10 +20,10 @@ public class DBHandler {
 
 
     private DBHandler() {
-        File path_to_database = new File("src\\com\\company\\Data");
+
         try {
 
-            connection = DriverManager.getConnection("jdbc:sqlite:" + path_to_database + "\\database.db");
+            connection = DriverManager.getConnection(Configs.getUrl());
             statement = connection.createStatement();
             System.out.println("Connected to SQL.");
 
@@ -52,7 +52,7 @@ public class DBHandler {
         double money = 0.0;
         int age = 0, apartment = 0;
 
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM Customers");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.TABLE_NAME_CUSTOMERS);
         while (resultSet.next()){
 
             first_name = resultSet.getString(2);
@@ -79,7 +79,7 @@ public class DBHandler {
         Person manager;
         String first_n = "", second_n = "";
 
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM Manager");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.TABLE_NAME_MANAGER);
         while (resultSet.next()){
            first_n =  resultSet.getString(2);
            second_n = resultSet.getString(3);
@@ -95,7 +95,7 @@ public class DBHandler {
 
         ArrayList<WallLamps> wallLamps = new ArrayList<WallLamps>();
 
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM WallLamps");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.TABLE_NAME_WALL_LAMPS);
       //  ResultSet countOf = statement.executeQuery("SELECT  id FROM WallLamps ORDER BY name DESC ");
         int count = 0, i = 0;
 
@@ -128,6 +128,10 @@ public class DBHandler {
     return wallLamps;
 
         }
+
+    public void insertProduct()  throws SQLException{
+
+    }
 
 
     }

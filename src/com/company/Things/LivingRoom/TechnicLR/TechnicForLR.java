@@ -1,4 +1,4 @@
-package com.company.Things.LivingRoom;
+package com.company.Things.LivingRoom.TechnicLR;
 
 import com.company.Things.Technic;
 

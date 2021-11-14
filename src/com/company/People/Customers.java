@@ -1,6 +1,6 @@
 package com.company.People;
 
-import com.company.ConsoleColors;
+import com.company.Interface.ConsoleColors;
 
 public class Customers extends Person implements ConsoleColors {
 
@@ -17,9 +17,9 @@ public class Customers extends Person implements ConsoleColors {
 
     public Customers(String name, String surname, int age, double money, String phone_number, String mail, String city, String street, int apartment) {
 
-        setFirst_name(name);
-        setSecond_name(surname);
-        setAge(age);
+        super.setFirst_name(name);
+        super.setSecond_name(surname);
+        super.setAge(age);
 
         this.money = money;
         this.phone_number = phone_number;
@@ -37,6 +37,7 @@ public class Customers extends Person implements ConsoleColors {
 
         System.out.println(CYAN_BOLD_BRIGHT + getFirst_name() + " " + getSecond_name() + " (Customers) greets the manager." + TEXT_RESET);
         Thread.sleep(1000);
+
     }
 
     @Override
@@ -57,7 +58,7 @@ public class Customers extends Person implements ConsoleColors {
 
     @Override
     public  int chooseOfProduct(int i) throws InterruptedException {
-        System.out.println(GREEN_BOLD_BRIGHT + getFirst_name() + " " + getSecond_name() + " (Customer) chose: " + TEXT_RESET + WHITE_BOLD_BRIGHT + i + TEXT_RESET);
+        System.out.println(CYAN_BOLD_BRIGHT + getFirst_name() + " " + getSecond_name() + " (Customer) chose: " + TEXT_RESET + WHITE_BOLD_BRIGHT + i + TEXT_RESET);
         return i;
     }
 

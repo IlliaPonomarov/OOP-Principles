@@ -49,9 +49,6 @@ public class Cashier extends Person{
         return customer_money;
     }
 
-    public void setCustomer_money(double customer_money) {
-        this.customer_money = customer_money;
-    }
 
     @Override
     public void greetings(Person person, Person person1) {

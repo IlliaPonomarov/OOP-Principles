@@ -1,14 +1,14 @@
 package com.company;
 
 import com.company.Data.DBHandler;
-import com.company.People.Customers;
+import com.company.Interface.ConsoleColors;
 import com.company.People.Person;
 import  java.lang.InterruptedException;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.Scanner;
 
-public class Main implements ConsoleColors{
+public class Main implements ConsoleColors {
     public static ArrayList<Person> customers;
     public static ArrayList<Person> manager;
 
@@ -18,11 +18,11 @@ public class Main implements ConsoleColors{
 
 
          greetingsText();
-          DBHandler dbHandler = DBHandler.getInstance();
+         DBHandler dbHandler = DBHandler.getInstance();
          Scanner in = new Scanner(System.in);
 
 
-         //Customers входит в магазин (создается объект)
+         // Customers enters the store (object is created)
          customers = new ArrayList<Person>();
          manager = new ArrayList<Person>();
 
@@ -33,12 +33,12 @@ public class Main implements ConsoleColors{
 
 
 
-         //Менеджер подходит к покупателю (Создается объект)
+         // The manager approaches the buyer (An object is created)
          manager.get(manager.size() - 1).greetings(manager.get(manager.size() - 1), customers.get(customers.size() - 1));
          customers.get(customers.size() - 1).greetings(customers.get(customers.size() - 1), customers.get(customers.size() - 1));
 
 
-         //Менеджер спрашивает, чего желает Покупатель
+         // The manager asks what the Customers wants
         questionsByManager(customers, manager);
 
 

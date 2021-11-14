@@ -1,6 +1,8 @@
 package com.company.People;
 
-public abstract class Person implements InteractionCustomersManager{
+import com.company.Interface.InteractionCustomersManager;
+
+public abstract class Person implements InteractionCustomersManager {
 
     private String first_name;
     private String second_name;
