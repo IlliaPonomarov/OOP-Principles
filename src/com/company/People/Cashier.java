@@ -63,7 +63,7 @@ public class Cashier extends Person implements ConsoleColors {
             customer_money -= cost_of_goods;
 
             Thread.sleep(1000);
-            System.out.println("The buyer has " + customer_money);
+            System.out.printf(GREEN_BOLD_BRIGHT + "The buyer has %.2f\n" , customer_money);
 
             Thread.sleep(1000);
             System.out.println(GREEN_BOLD_BRIGHT + "(Customers) leaving the store ..." + TEXT_RESET);

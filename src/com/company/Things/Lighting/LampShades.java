@@ -14,7 +14,7 @@ public class LampShades extends Lighting{
         this.setPrice(price);
         this.setAvailabilityOfGuarantee(avail_guarantie);
         this.setPresenceOfBulbs(presence_bulbs);
-        this.setColor(color);
+        this.color = color;
         this.setAvail_in_warehouse(avail_warehouse);
         this.height = height;
         this.width = width;

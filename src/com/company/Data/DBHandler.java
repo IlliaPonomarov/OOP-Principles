@@ -3,6 +3,7 @@ import com.company.People.Cashier;
 import com.company.People.Customers;
 import com.company.People.Manager;
 import com.company.People.Person;
+import com.company.Things.Lighting.LampShades;
 import com.company.Things.Lighting.WallLamps;
 
 
@@ -151,6 +152,45 @@ public class DBHandler {
     return wallLamps;
 
         }
+
+    public ArrayList<LampShades> getLamps_shades() throws SQLException{
+
+        ArrayList<LampShades> lamps_shades = new ArrayList<LampShades>();
+
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM LampsShades");
+        //  ResultSet countOf = statement.executeQuery("SELECT  id FROM WallLamps ORDER BY name DESC ");
+        int count = 0, i = 0;
+
+
+
+
+        while (resultSet.next()) {
+                System.out.println(resultSet.getString(2));
+                System.out.println(resultSet.getDouble(3));
+                System.out.println(resultSet.getBoolean(4));
+                System.out.println(resultSet.getBoolean(5));
+                System.out.println(resultSet.getString(6));
+                System.out.println(resultSet.getInt(7));
+                System.out.println(resultSet.getInt(8));
+                System.out.println(resultSet.getInt(9));
+            LampShades lll = new LampShades(
+                    resultSet.getString(2),
+                    resultSet.getDouble(3),
+                    resultSet.getBoolean(4),
+                    resultSet.getBoolean(5),
+                    resultSet.getString(6),
+                    resultSet.getInt(7),
+                    resultSet.getInt(8),
+                    resultSet.getInt(9));
+            lamps_shades.add(lll);
+            System.out.println(lamps_shades.get(0).getColor());
+        }
+
+//            System.out.println(wallLamps.get(0).toString());
+//            System.out.println(wallLamps.get(1).toString());
+        return lamps_shades;
+
+    }
 
     public void insertOrder(String name, double price, boolean avail, String color, int avail_warehouse, double height, double width)  throws SQLException{
         int rows = statement.executeUpdate("INSERT INTO 'OrderOfGoods'(name, price, avail_guarantie, color, avail_warehouse, height, width) VALUES (name , price, true, color, avail_warehouse, hright, width);");

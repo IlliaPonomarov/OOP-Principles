@@ -23,7 +23,7 @@ public interface ProductSearch extends ConsoleColors,  ChooseORDER {
         ArrayList<Double> price_list = new ArrayList<Double>();
         ArrayList<Integer> count_of_price = new ArrayList<>();
 
-        for (int i = 0; i < listOf.size(); i++) {
+        for (int i = 0; i < listOf.size() - 1; i++) {
             Collections.addAll(price_list, listOf.get(i).getPrice());
             Collections.addAll(count_of_price, i + 1);
         }
@@ -87,27 +87,28 @@ public interface ProductSearch extends ConsoleColors,  ChooseORDER {
         ArrayList<Integer> count_of_colors = new ArrayList<>();
         int choose = 0;
 
+        listOf.stream().forEach(System.out::println);
+
         listOf.stream().forEach(p-> colors.add(p.getColor()));
         Thread.sleep(1000);
         System.out.println(GREEN_BOLD_BRIGHT + ns_manager + "(Manager) We only stock products with these colors:: " + TEXT_RESET);
 
         for (int i = 0; i < colors.size(); i++){
-            System.out.printf("%d) %s\n", i+1, colors.get(i));
-            Collections.addAll(count_of_colors, i + 1);
+            System.out.printf("%d) %s\n", i, colors.get(i));
+            Collections.addAll(count_of_colors, i);
         }
 
         Thread.sleep(1000);
-        System.out.println(GREEN_BOLD_BRIGHT  + "(Manager) Please, choose is: " + TEXT_RESET);
+        System.out.println(GREEN_BOLD_BRIGHT  + ns_manager + "(Manager) Please, choose is: " + TEXT_RESET);
 
         choose = in.nextInt();
-        for (int i = 1; i <= count_of_colors.size() - 1; i++){
+        for (int i = 0; i < count_of_colors.size() ; i++){
             if (count_of_colors.contains(choose)){
                 Thread.sleep(1000);
-                System.out.printf(GREEN_BOLD_BRIGHT  + "(Manager) You chose %d) %s\n", count_of_colors.get(i), colors.get(i) + TEXT_RESET);
 
-                return listOf.get(i).getPrice();
-            }else{
-                OrderOfGoods.order_start();
+                System.out.printf(GREEN_BOLD_BRIGHT  + ns_manager + "(Manager) You chose %d) %s\n", i, colors.get(choose) + TEXT_RESET);
+
+                return listOf.get(choose).getPrice();
             }
         }
 
