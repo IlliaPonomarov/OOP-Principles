@@ -8,10 +8,23 @@ import java.sql.SQLException;
 import java.util.*;
 import java.util.Scanner;
 
+//@author Illia Ponomarov
+//@version 1.8
+
 public class Main implements ConsoleColors {
     public static ArrayList<Person> customers;
     public static ArrayList<Person> manager;
 
+    /*
+    * =============================================================================================================================================== *
+    *                                                                                                                                                 *
+    * This project uses the SQLITE database, so before starting the project, you need to connect the driver, which is located in the "lib" folder.    *
+    *  For IntelliJIDEA: FILE -> PROJECT STRUCTER -> LIBRARIES -> click "+" -> Java -> (select our driver from the folder "lib" ) -> apply            *
+    *                                                                                                                                                 *
+    * ================================================================================================================================================*
+
+
+    * */
     public static void main(String[] args)  {
 	 try
      {
@@ -42,7 +55,7 @@ public class Main implements ConsoleColors {
         questionsByManager(customers, manager);
 
 
-     }catch (SQLException | InterruptedException throwables){
+     }catch (SQLException | InterruptedException | ClassNotFoundException throwables){
 	     throwables.printStackTrace();
          System.out.println("Connection Error");
      }
@@ -53,10 +66,11 @@ public class Main implements ConsoleColors {
     }
 
     public static void questionsByManager(ArrayList<Person> customers, ArrayList<Person> manager) throws InterruptedException, SQLException{
-        int size_c = customers.size() - 1, size_m = manager.size() - 1;
+        int size_c = customers.size() - 1, size_m = manager.size() - 1, answer_by_cust;
         manager.get(size_m).chooseOfProduct(0);
         Scanner in = new Scanner(System.in);
-        int answer_by_cust = customers.get(size_c).chooseOfProduct(in.nextInt());
+
+        answer_by_cust = customers.get(size_c).chooseOfProduct(in.nextInt());
         manager.get(size_m).chooseOfProduct(answer_by_cust);
 
     }

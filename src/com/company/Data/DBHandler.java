@@ -44,13 +44,15 @@ public class DBHandler {
 
 
     //Customers
-    public Person getCustomers() throws SQLException{
+    public Person getCustomers() throws SQLException, ClassNotFoundException {
 
         Person person;
 
         String first_name = " ", second_name = " ", mail = " ", street = " ", phone_number = " ", city = " ";
         double money = 0.0;
         int age = 0, apartment = 0;
+
+
 
         ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.TABLE_NAME_CUSTOMERS);
         while (resultSet.next()){

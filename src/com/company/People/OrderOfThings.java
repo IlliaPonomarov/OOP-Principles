@@ -1,5 +1,7 @@
 package com.company.People;
 
+import com.company.Things.Lighting.WallLamps;
+
 public class OrderOfThings {
 
     private String name;
@@ -13,6 +15,8 @@ public class OrderOfThings {
     private int height;
     private int width;
 
+    private WallLamps wallLamps;
+
 
     public OrderOfThings(String name, double price, boolean avail_guarantie, String color, int avail_warehouse, int height, int width) {
         this.name = name;
@@ -23,6 +27,25 @@ public class OrderOfThings {
         this.height = height;
         this.width = width;
     }
+
+    public OrderOfThings(WallLamps wallLamps){
+        this.wallLamps = wallLamps;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public String getName() {

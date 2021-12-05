@@ -1,0 +1,2 @@
+This project uses the SQLITE database, so before starting the project, you need to connect the driver, which is located in the "lib" folder.
+For IntelliJIDEA: FILE -> PROJECT STRUCTER -> LIBRARIES -> click "+" -> Java -> (выбираем нашей драйвер с папочки lib) -> apply

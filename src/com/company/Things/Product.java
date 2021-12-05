@@ -6,8 +6,19 @@ public abstract class Product extends Manager {
     private boolean availabilityOfGuarantee;
     private int avail_in_warehouse;
     private double price;
+    private String color;
 
 
+
+
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public boolean isAvailabilityOfGuarantee() {
         return availabilityOfGuarantee;

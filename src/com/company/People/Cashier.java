@@ -1,5 +1,7 @@
 package com.company.People;
 
+import com.company.Things.Product;
+
 public class Cashier extends Person{
 
 
@@ -7,8 +9,13 @@ public class Cashier extends Person{
    private boolean avail_of_cashier;
    private double cost_of_goods;
    private double customer_money;
+   private Product product;
 
-    public Cashier(){}
+
+    public Cashier(Product product){
+        this.product = product;
+    }
+
 
     public Cashier(String name, String surname, int cashier_number, boolean avail_of_cashier, double cost_of_goods, double customer_money) {
 
