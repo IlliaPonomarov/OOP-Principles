@@ -7,7 +7,11 @@ public abstract class Person implements InteractionCustomersManager {
     private String first_name;
     private String second_name;
     private int age;
+    private double money;
 
+    public double getMoney() {
+        return money;
+    }
 
     public Person(){}
 

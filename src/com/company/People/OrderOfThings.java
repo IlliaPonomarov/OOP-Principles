@@ -1,6 +1,10 @@
 package com.company.People;
 
+import com.company.Data.DBHandler;
+import com.company.Main;
 import com.company.Things.Lighting.WallLamps;
+
+import java.sql.SQLException;
 
 public class OrderOfThings {
 
@@ -12,13 +16,14 @@ public class OrderOfThings {
     private boolean presence_bulbs;
 
     private int avail_warehouse;
-    private int height;
-    private int width;
+    private double height;
+    private double width;
 
     private WallLamps wallLamps;
 
 
-    public OrderOfThings(String name, double price, boolean avail_guarantie, String color, int avail_warehouse, int height, int width) {
+
+    public OrderOfThings(String name, double price, boolean avail_guarantie, String color, int avail_warehouse, double height, double width) {
         this.name = name;
         this.price = price;
         this.avail_guarantie = avail_guarantie;
@@ -28,22 +33,11 @@ public class OrderOfThings {
         this.width = width;
     }
 
-    public OrderOfThings(WallLamps wallLamps){
-        this.wallLamps = wallLamps;
+
+    public void addData(String name, double price, boolean avail, String color, int avail_warehouse, double height, double width) throws SQLException {
+        DBHandler dbHandler = DBHandler.getInstance();
+        dbHandler.insertOrder(name, price, avail_guarantie, color, 1, height, width);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -70,11 +64,11 @@ public class OrderOfThings {
         return avail_warehouse;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 }

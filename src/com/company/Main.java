@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.Data.DBHandler;
 import com.company.Interface.ConsoleColors;
+import com.company.People.Cashier;
 import com.company.People.Person;
 import  java.lang.InterruptedException;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.util.Scanner;
 public class Main implements ConsoleColors {
     public static ArrayList<Person> customers;
     public static ArrayList<Person> manager;
+    public static ArrayList<Cashier> cashiers;
 
     /*
     * =============================================================================================================================================== *
@@ -38,9 +40,11 @@ public class Main implements ConsoleColors {
          // Customers enters the store (object is created)
          customers = new ArrayList<Person>();
          manager = new ArrayList<Person>();
+         cashiers = new ArrayList<Cashier>();
 
          customers.add(dbHandler.getCustomers());
          manager.add(dbHandler.getManager());
+         cashiers.add(dbHandler.getCashiers());
 
          System.out.println(CYAN_BOLD_BRIGHT + customers.get(0).getFirst_name() + " " + customers.get(0).getSecond_name() + " (Customers)enter the store IP company ..." + TEXT_RESET);
 
@@ -54,7 +58,7 @@ public class Main implements ConsoleColors {
          // The manager asks what the Customers wants
         questionsByManager(customers, manager);
 
-
+        System.currentTimeMillis();
      }catch (SQLException | InterruptedException | ClassNotFoundException throwables){
 	     throwables.printStackTrace();
          System.out.println("Connection Error");

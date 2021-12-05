@@ -65,7 +65,7 @@ public class Customers extends Person implements ConsoleColors {
 
 
 
-    public double getMoney() {
+    public  double getMoney() {
         return money;
     }
 

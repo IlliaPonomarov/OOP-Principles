@@ -1,4 +1,5 @@
 package com.company.Data;
+import com.company.People.Cashier;
 import com.company.People.Customers;
 import com.company.People.Manager;
 import com.company.People.Person;
@@ -74,8 +75,28 @@ public class DBHandler {
 
 
 
+
         return person;
     }
+
+
+    public Cashier getCashiers()throws SQLException, InterruptedException{
+        Cashier cashier;
+
+        String first_name = "", second_name = "";
+
+        ResultSet resultSet = statement.executeQuery("SELECT  * FROM " + Const.TABLE_NAME_CASHIER);
+
+        while (resultSet.next()){
+            first_name = resultSet.getString(2);
+            second_name = resultSet.getString(3);
+        }
+
+        cashier = new Cashier(first_name, second_name);
+
+        return cashier;
+    }
+
 
     public Person getManager() throws SQLException{
         Person manager;
@@ -131,8 +152,8 @@ public class DBHandler {
 
         }
 
-    public void insertProduct()  throws SQLException{
-
+    public void insertOrder(String name, double price, boolean avail, String color, int avail_warehouse, double height, double width)  throws SQLException{
+        int rows = statement.executeUpdate("INSERT INTO 'OrderOfGoods'(name, price, avail_guarantie, color, avail_warehouse, height, width) VALUES (name , price, true, color, avail_warehouse, hright, width);");
     }
 
 

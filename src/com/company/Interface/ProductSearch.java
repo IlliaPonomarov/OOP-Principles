@@ -9,9 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.Vector;
 import java.util.stream.Stream;
 
-public interface ProductSearch extends ConsoleColors {
+public interface ProductSearch extends ConsoleColors,  ChooseORDER {
+    String ns_customers = Main.customers.get(Main.customers.size() - 1).getFirst_name() + " " + Main.customers.get(Main.customers.size() - 1).getSecond_name();
+    String ns_manager = Main.manager.get(Main.manager.size() - 1).getFirst_name() + " " + Main.manager.get(Main.manager.size() - 1).getSecond_name();
 
     static double searchByPrice(ArrayList<? extends Product> listOf) throws InterruptedException, SQLException {
         Thread.sleep(1000);
@@ -39,7 +42,6 @@ public interface ProductSearch extends ConsoleColors {
                 System.out.printf("Higher price: %.2f\n", high);
                 return high;
 
-
             case 3:
                 double ii = 0.0;
                 double finalIi;
@@ -62,14 +64,13 @@ public interface ProductSearch extends ConsoleColors {
                     }
                 }
 
-                System.out.println("Менеджер: Выберите цену ");
+                System.out.println(GREEN_BOLD_BRIGHT + ns_manager + " Choose a price: ");
                 choose = in.nextInt();
                 for (int j = 1; j <= count_of_price.size() - 1; j++) {
                     if (count_of_price.contains(choose)) {
-                        System.out.printf("Вы выбрали %d) %.2f.\n", count_of_price.get(j), price_list.get(j));
+                        System.out.printf(CYAN_BOLD_BRIGHT + "You chose: %d) %.2f.\n", count_of_price.get(j), price_list.get(j));
+                        System.out.println("Do you want to buy it? (Y/N)" + TEXT_RESET);
                         return price_list.get(j);
-                    } else {
-                      OrderStart.order_start();
                     }
                 }
 
@@ -77,42 +78,48 @@ public interface ProductSearch extends ConsoleColors {
         }
 
 
-        return 0;
+        return -1;
     }
-    static String searchByColor(ArrayList<? extends Product> listOf) throws InterruptedException {
+
+    static double searchByColor(ArrayList<? extends Product> listOf) throws InterruptedException {
         Scanner in = new Scanner(System.in);
         ArrayList<String> colors = new ArrayList<String>();
         ArrayList<Integer> count_of_colors = new ArrayList<>();
         int choose = 0;
 
         listOf.stream().forEach(p-> colors.add(p.getColor()));
-        System.out.println("Менеджер: Мы имеем в наличии только товары с такими цветами: ");
+        Thread.sleep(1000);
+        System.out.println(GREEN_BOLD_BRIGHT + ns_manager + "(Manager) We only stock products with these colors:: " + TEXT_RESET);
 
         for (int i = 0; i < colors.size(); i++){
             System.out.printf("%d) %s\n", i+1, colors.get(i));
             Collections.addAll(count_of_colors, i + 1);
         }
 
-        System.out.println("Менеджер: Выберите цвет: ");
+        Thread.sleep(1000);
+        System.out.println(GREEN_BOLD_BRIGHT  + "(Manager) Please, choose is: " + TEXT_RESET);
 
         choose = in.nextInt();
         for (int i = 1; i <= count_of_colors.size() - 1; i++){
             if (count_of_colors.contains(choose)){
-                System.out.printf("Менеджер: Вы выбрали %d) %s\n", count_of_colors.get(i), colors.get(i));
-                return colors.get(i);
+                Thread.sleep(1000);
+                System.out.printf(GREEN_BOLD_BRIGHT  + "(Manager) You chose %d) %s\n", count_of_colors.get(i), colors.get(i) + TEXT_RESET);
+
+                return listOf.get(i).getPrice();
             }else{
-                OrderStart.order_start();
+                OrderOfGoods.order_start();
             }
         }
 
-        return "";
+        return -1;
     }
 
-
-    static void searchByColor_Price(ArrayList<? extends Product> listOf) throws SQLException, InterruptedException {
+    static double searchByColor_Price(ArrayList<? extends Product> listOf) throws SQLException, InterruptedException {
         double price = searchByPrice(listOf);
-        String color = searchByColor(listOf);
+        double color = searchByColor(listOf);
         System.out.printf("Price: %.2f\nColor: %s\n", price, color);
+
+
 
         ArrayList<String> colors_array = new ArrayList<String>();
         ArrayList<Double> price_array = new ArrayList<Double>();
@@ -124,49 +131,15 @@ public interface ProductSearch extends ConsoleColors {
         for(int i = 0; i < listOf.size(); i++){
             if (price_array.contains(price) && colors_array.contains(color)) {
                 System.out.println("Товар с такими параметрами существует!");
+                return price;
             }
         }
 
+
+
+        return -1;
 
     }
 
 }
 
-interface OrderStart {
-    static void order_start() throws InterruptedException {
-        Scanner in = new Scanner(System.in);
-        String answer_YN = "";
-
-        while (!answer_YN.toLowerCase().equals("y") || !answer_YN.toLowerCase().equals("n")) {
-            Thread.sleep(1000);
-            System.out.println(
-                    Main.manager.get(Main.manager.size() - 1).getFirst_name() + " "
-                            + Main.manager.get(Main.manager.size() - 1).getSecond_name() +
-                            "(Manager) Unfortunately, there is no product with such a price. Do you want to place an order? (Y/N): "
-            );
-
-            answer_YN = in.next();
-
-            if (answer_YN.toLowerCase().equals("y")) {
-
-                //
-                Thread.sleep(1000);
-                System.out.println("You chose Yes.");
-                OrderStart.order_start();
-
-
-            } else if (answer_YN.toLowerCase().equals("n")) {
-
-                // Написать симуляцию выхода из магазина
-                Thread.sleep(1000);
-                System.out.println("You chose No.");
-
-            } else {
-                Thread.sleep(1000);
-                System.err.println("Can you try again.");
-            }
-
-        }
-
-      }
-    }

@@ -1,11 +1,8 @@
 package com.company.People;
 
-import com.company.Interface.ConsoleColors;
+import com.company.Interface.*;
 import com.company.Data.DBHandler;
 import com.company.Main;
-import com.company.Interface.InteractionCustomersManager;
-import com.company.Interface.OrderOfGoods;
-import com.company.Interface.ProductSearch;
 import com.company.Things.Lighting.WallLamps;
 
 import java.sql.SQLException;
@@ -13,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Manager extends Person implements ConsoleColors, InteractionCustomersManager, ProductSearch, OrderOfGoods {
+public class Manager extends Person implements ConsoleColors, InteractionCustomersManager, ProductSearch, OrderOfGoods, ChooseORDER {
 
 
 
@@ -108,12 +105,17 @@ public class Manager extends Person implements ConsoleColors, InteractionCustome
                     }
                     break;
                 default:
-                    System.out.println("Такого варианта нет. Попробуйте еще");
+                    System.err.println("There is no such option. Try again");
                     chooseOfProduct(in.nextInt());
                     break;
             }
         }
     return 0;
+    }
+
+
+    public void buy(){
+
     }
 
     public void searchOfWallLamps() throws SQLException , InterruptedException {
@@ -124,6 +126,8 @@ public class Manager extends Person implements ConsoleColors, InteractionCustome
         int size_c = Main.customers.size() - 1;
         int size_m = Main.customers.size() - 1;
         int choose_c = 0;
+        double price = 0;
+        String answer = "";
 
         wallLamps = new ArrayList<WallLamps>();
         wallLamps = dbHandler.getWallLamps();
@@ -132,7 +136,7 @@ public class Manager extends Person implements ConsoleColors, InteractionCustome
         System.out.println(GREEN_BOLD_BRIGHT + getFirst_name() + " " + getSecond_name() + "(Manager):" + TEXT_RESET + WHITE_BOLD_BRIGHT + " Are there any special requests? Colour? Price?" + TEXT_RESET);
 
         Thread.sleep(1000);
-        System.out.println(GREEN_BOLD_BRIGHT + getFirst_name() + " " + getSecond_name() + "(Manager):" + TEXT_RESET + WHITE_BOLD_BRIGHT + " Select 1.Price (almost work) 2.Color (doesn't work) 3.Color and Price (doesn't work)" + TEXT_RESET);
+        System.out.println(GREEN_BOLD_BRIGHT + getFirst_name() + " " + getSecond_name() + "(Manager):" + TEXT_RESET + WHITE_BOLD_BRIGHT + " Select 1.Price  2.Color  3.Color and Price" + TEXT_RESET);
 
 
 
@@ -140,14 +144,106 @@ public class Manager extends Person implements ConsoleColors, InteractionCustome
             choose_c = Main.customers.get(size_c).chooseOfProduct(in.nextInt());
             switch (choose_c) {
                 case 1:
-                    ProductSearch.searchByPrice(wallLamps);
+                    price = ProductSearch.searchByPrice(wallLamps);
+
+                    if (price != -1 ){
+                        Thread.sleep(1000);
+                        System.out.println(GREEN_BOLD_BRIGHT + ns_manager + " (Manager)" + TEXT_RESET + " Do you want to buy this item? (Y/N)");
+
+                        answer = ChooseORDER.choose(in.next());
+
+                        if (answer.equals("Yes")) {
+                            Cashier cashier = new Cashier(price, Main.customers.get(size_c).getMoney());
+                            cashier.sale_of_goods();
+                        }
+                        else if (answer.equals("No")){
+                            System.out.println(GREEN_BOLD_BRIGHT + "(Manager) Do you wanna order this items? (Y/N)" + TEXT_RESET);
+                            answer = in.next();
+                            if (answer.equals("Yes")){
+                                String name_r = "", color = "";
+                                double price_r = 0, height = 0, width = 0;
+                                boolean avail_guarantie;
+
+                                Thread.sleep(1000);
+                                System.out.printf("\nName of item: ");
+                                name_r = in.next();
+
+                                Thread.sleep(1000);
+                                System.out.printf("\nHeight: ");
+                                height = in.nextDouble();
+
+                                Thread.sleep(1000);
+                                System.out.println("\nWidth: ");
+                                width = in.nextDouble();
+
+                                Thread.sleep(1000);
+                                price = width * height;
+                                System.out.printf("\nPrice %.2f", price);
+
+                                Thread.sleep(1000);
+                                avail_guarantie = true;
+
+                                Thread.sleep(1000);
+                                System.out.printf("\nColor: ");
+                                color = in.next();
+
+                                Thread.sleep(1000);
+                                System.out.println(GREEN_BOLD_BRIGHT + ns_manager + "(Manager) We place an order ... ..." + TEXT_RESET);
+
+                                Thread.sleep(1000);
+                                System.out.println(GREEN_BOLD_BRIGHT + ns_manager + "(Manager)" + TEXT_RESET + " Your order has been placed! Go to the checkout and pay.");
+
+
+                                OrderOfThings orderOfThings= new OrderOfThings(name_r, price, avail_guarantie, color, 1, height, width);
+                                orderOfThings.addData(name_r, price, avail_guarantie, color, 1, height, width);
+
+                                Thread.sleep(1000);
+                                System.out.println(CYAN_BOLD_BRIGHT + "(Customers) Подходит к кассе ..." + TEXT_RESET);
+                                Cashier cashier = new Cashier(price_r, Main.customers.get(size_c).getMoney());
+
+                            }
+
+                            System.out.println(CYAN_BOLD_BRIGHT + "(Customers) exits the store ..." + TEXT_RESET);
+                            System.exit(0);
+                        }
+                    }
+                    else if (price == -1){
+                        Thread.sleep(1000);
+                        System.out.println(GREEN_BOLD_BRIGHT + ns_manager + "(Manager)" + " Do you wanna order this item?" + TEXT_RESET);
+                        answer = ChooseORDER.choose(in.next());
+
+                        if (answer.equals("Yes"))
+                            OrderOfGoods.order_start();
+                        else
+                            System.exit(0);
+                    }
+
                     break;
                 case 2:
-                    System.out.println("Менеджер: Окей, мы имеем в наличии Wall Lamps только с такими цветами: ");
-                     ProductSearch.searchByColor(wallLamps);
+
+                    System.out.println(GREEN_BOLD_BRIGHT + ns_manager + "(Manager) Okay, we only have Wall Lamps in stock with these colors: " + TEXT_RESET);
+                        double color =  ProductSearch.searchByColor(wallLamps);
+
+                    if (color != -1){
+                        Cashier cashier = new Cashier(color, Main.customers.get(size_c).getMoney());
+                        cashier.sale_of_goods();
+                    }
+                    else if (color == -1){
+                        OrderOfGoods.order_start();
+                    }
                     break;
                 case 3:
-                     ProductSearch.searchByColor_Price(wallLamps);
+                    double color_price = 0;
+
+                    color_price = ProductSearch.searchByColor_Price(wallLamps);
+                    if (price != -1){
+                        Cashier cashier = new Cashier(price, Main.customers.get(size_c).getMoney());
+                        cashier.sale_of_goods();
+                    }
+                    else if (price == -1){
+                        OrderOfGoods.order_start();
+                    }
+
                     break;
                 default:
                     System.err.println("Try again.");
