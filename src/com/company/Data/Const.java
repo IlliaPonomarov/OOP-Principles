@@ -19,10 +19,15 @@ public class Const {
     protected static final String TABLE_NAME_CASHIER = "Cashier";
 
     //TABLE - FURNITURE_WALL_LAMPS
-    protected static final String TABLE_NAME_WALL_LAMPS = "WallLamps";
+    protected static final String TABLE_NAME_Chairs = "Chairs";
+    protected static final String TABLE_NAME_FloorStand = "FloorStand";
 
     //TABLE - TECHNIC
+    protected static final String TABLE_NAME_TV = "TV";
+    protected static final String TABLE_NAME_Shower_Heads = "ShowerHeads";
 
     //TABLE - LIGHTING
+    protected static final String TABLE_NAME_WALL_LAMPS = "WallLamps";
+    protected static final String TABLE_NAME_Lamps_Shades = "LampsShades";
 
 }

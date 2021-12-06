@@ -3,8 +3,12 @@ import com.company.People.Cashier;
 import com.company.People.Customers;
 import com.company.People.Manager;
 import com.company.People.Person;
+import com.company.Things.Bathroom.FurnitureBR.FloorStand;
+import com.company.Things.Bathroom.TechnicBR.ShowerHeads;
 import com.company.Things.Lighting.LampShades;
 import com.company.Things.Lighting.WallLamps;
+import com.company.Things.LivingRoom.FurnitureLR.Chair;
+import com.company.Things.LivingRoom.TechnicLR.TV;
 
 
 import java.util.ArrayList;
@@ -113,6 +117,113 @@ public class DBHandler {
 
 
         return manager;
+    }
+
+    public ArrayList<Chair> getChairs() throws SQLException{
+        ArrayList<Chair> chairs = new ArrayList<Chair>();
+
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.TABLE_NAME_Chairs);
+        //  ResultSet countOf = statement.executeQuery("SELECT  id FROM WallLamps ORDER BY name DESC ");
+        int count = 0, i = 0;
+
+
+
+
+        while (resultSet.next()) {
+
+            Chair lll = new Chair(
+                    resultSet.getString(2),
+                    resultSet.getDouble(3),
+                    resultSet.getBoolean(4),
+                    resultSet.getBoolean(5),
+                    resultSet.getString(6),
+                    resultSet.getInt(7),
+                    resultSet.getInt(8),
+                    resultSet.getInt(9));
+            chairs.add(lll);
+        }
+
+        return chairs;
+    }
+
+
+    public ArrayList<FloorStand> getFloorStand() throws SQLException{
+        ArrayList<FloorStand> floorStands = new ArrayList<FloorStand>();
+
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.TABLE_NAME_FloorStand);
+        //  ResultSet countOf = statement.executeQuery("SELECT  id FROM WallLamps ORDER BY name DESC ");
+        int count = 0, i = 0;
+
+        while (resultSet.next()) {
+
+           FloorStand lll = new FloorStand(
+                    resultSet.getString(2),
+                    resultSet.getDouble(3),
+                    resultSet.getBoolean(4),
+                    resultSet.getBoolean(5),
+                    resultSet.getString(6),
+                    resultSet.getInt(7),
+                    resultSet.getInt(8),
+                    resultSet.getInt(9));
+            floorStands.add(lll);
+        }
+
+        return floorStands;
+    }
+
+    public ArrayList<TV> getTV() throws SQLException{
+        ArrayList<TV> tvs = new ArrayList<TV>();
+
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.TABLE_NAME_TV);
+
+        int count = 0, i = 0;
+
+        while (resultSet.next()) {
+
+            TV lll = new TV(
+                    resultSet.getString(2),
+                    resultSet.getDouble(3),
+                    resultSet.getBoolean(4),
+                    resultSet.getBoolean(5),
+                    resultSet.getString(6),
+                    resultSet.getInt(7),
+                    resultSet.getInt(8),
+                    resultSet.getInt(9));
+            tvs.add(lll);
+        }
+
+        return tvs;
+    }
+
+    public ArrayList<ShowerHeads> getShowerHeads() throws SQLException{
+        ArrayList<ShowerHeads> showerHeads = new ArrayList<ShowerHeads>();
+
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.TABLE_NAME_Shower_Heads);
+
+        int count = 0, i = 0;
+
+        while (resultSet.next()) {
+                System.out.println(resultSet.getString(2));
+                System.out.println(resultSet.getDouble(3));
+                System.out.println(resultSet.getBoolean(4));
+                System.out.println(resultSet.getBoolean(5));
+                System.out.println(resultSet.getString(6));
+                System.out.println(resultSet.getInt(7));
+                System.out.println(resultSet.getInt(8));
+                System.out.println(resultSet.getInt(9));
+            ShowerHeads lll = new ShowerHeads(
+                    resultSet.getString(2),
+                    resultSet.getDouble(3),
+                    resultSet.getBoolean(4),
+                    resultSet.getBoolean(5),
+                    resultSet.getString(6),
+                    resultSet.getInt(7),
+                    resultSet.getInt(8),
+                    resultSet.getInt(9));
+            showerHeads.add(lll);
+        }
+
+        return showerHeads;
     }
 
     public ArrayList<WallLamps> getWallLamps() throws SQLException{

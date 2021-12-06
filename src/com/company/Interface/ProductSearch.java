@@ -53,11 +53,10 @@ public interface ProductSearch extends ConsoleColors,  ChooseORDER {
 
                 ii = in.nextDouble();
                 finalIi = ii;
+                System.out.println(GREEN_BOLD_BRIGHT + ns_manager + "(Manager)" + TEXT_RESET + "  We have this product for such a price: ");
 
 
-                System.out.println("Менеджер: Мы имеем этот товар за такую цену: ");
                 for (int j = 0; j < price_list.size(); j++) {
-
                     if (price_list.get(j) <= finalIi) {
                         System.out.printf("%d) Price: %.2f\n", count_of_price.get(j), price_list.get(j));
 

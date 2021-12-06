@@ -3,10 +3,10 @@ package com.company.Things.LivingRoom.FurnitureLR;
 import com.company.Things.Fourniture;
 
 public class Chair extends Fourniture {
-    String name;
-    String color;
-    int height;
-    int width;
+    private String name;
+    private String color;
+    private int height;
+    private int width;
 
     public Chair(){}
 
