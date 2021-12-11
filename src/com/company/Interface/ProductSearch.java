@@ -1,16 +1,11 @@
 package com.company.Interface;
-
 import com.company.Main;
 import com.company.Things.Product;
-
-import javax.print.attribute.standard.OrientationRequested;
-import java.sql.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-import java.util.Vector;
-import java.util.stream.Stream;
+
 
 public interface ProductSearch extends ConsoleColors,  ChooseORDER {
     String ns_customers = Main.customers.get(Main.customers.size() - 1).getFirst_name() + " " + Main.customers.get(Main.customers.size() - 1).getSecond_name();

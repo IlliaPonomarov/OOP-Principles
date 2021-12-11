@@ -104,6 +104,7 @@ public class DBHandler {
 
 
     public Person getManager() throws SQLException{
+
         Person manager;
         String first_n = "", second_n = "";
 
@@ -195,7 +196,7 @@ public class DBHandler {
         return tvs;
     }
 
-    public ArrayList<ShowerHeads> getShowerHeads() throws SQLException{
+    public final ArrayList<ShowerHeads> getShowerHeads() throws SQLException{
         ArrayList<ShowerHeads> showerHeads = new ArrayList<ShowerHeads>();
 
         ResultSet resultSet = statement.executeQuery("SELECT * FROM " + Const.TABLE_NAME_Shower_Heads);
@@ -226,7 +227,7 @@ public class DBHandler {
         return showerHeads;
     }
 
-    public ArrayList<WallLamps> getWallLamps() throws SQLException{
+    public final ArrayList<WallLamps> getWallLamps() throws SQLException{
 
         ArrayList<WallLamps> wallLamps = new ArrayList<WallLamps>();
 
@@ -264,7 +265,7 @@ public class DBHandler {
 
         }
 
-    public ArrayList<LampShades> getLamps_shades() throws SQLException{
+    public final ArrayList<LampShades> getLamps_shades() throws SQLException{
 
         ArrayList<LampShades> lamps_shades = new ArrayList<LampShades>();
 

@@ -5,7 +5,7 @@ import java.io.File;
 public class Configs {
 
     //DB Configs
-    protected static File path_to_database = new File("src\\com\\company\\Data");
+    protected static  File path_to_database = new File("src\\com\\company\\Data");
     private static String url = "jdbc:sqlite:" + path_to_database + "\\database.db";
 
 
